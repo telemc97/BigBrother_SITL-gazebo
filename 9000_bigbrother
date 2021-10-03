@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# @name BigBrother SITL
+#
+# @type Quadrotor X
+#
+# @maintainer Mitroudas Tilemahos <mitroudas.tilemahos@gmail.com>
+#
+
+. ${R}etc/init.d/rc.mc_defaults
+
+param set-default MC_ROLLRATE_K 0.3
+param set-default MC_ROLLRATE_D 0.0034
+param set-default MC_ROLLRATE_I 0.15
+param set-default MC_PITCHRATE_K 0.3
+param set-default MC_PITCHRATE_D 0.0052
+param set-default MC_PITCHRATE_I 0.15
+param set-default MC_YAWRATE_K 0.3
+param set-default MC_YAWRATE_I 0.04
+param set-default MC_ROLL_P 7
+param set-default MC_PITCH_P 2
+param set-default MC_YAW_P 2.3
+param set-default MPC_XY_VEL_P_ACC 2.2
+param set-default MPC_XY_VEL_I_ACC 1.4
+param set-default MPC_XY_VEL_D_ACC 0.45
+param set-default MPC_Z_VEL_P_ACC 4
+param set-default MPC_Z_VEL_I_ACC 2
+param set-default MPC_Z_VEL_D_ACC 0.2
+param set-default MPC_XY_P 0.25
+param set-default MPC_Z_P 0.5
+
+set MIXER quad_x
