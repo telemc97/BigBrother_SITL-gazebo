@@ -1,5 +1,12 @@
 <?xml version="1.0"?>
 <launch>
+
+    <!-- <remap from="/bigbrother/camera0/image_raw" to="/stereo/left/image_raw"/>
+    <remap from="/bigbrother/camera0/camera0_info" to="/stereo/left/camera_info"/>
+
+    <remap from="/bigbrother/camera1/image_raw" to="/stereo/right/image_raw"/>
+    <remap from="/bigbrother/camera1/camera1_info" to="/stereo/right/camera_info"/> -->
+
     <!-- Posix SITL environment launch script -->
     <!-- launches PX4 SITL, Gazebo environment, and spawns vehicle -->
     <!-- vehicle pose -->
@@ -12,7 +19,7 @@
     <!-- vehicle model and world -->
     <arg name="est" default="ekf2"/>
     <arg name="vehicle" default="bigbrother"/>
-    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/baylands.world"/>
+    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/baylands_bench_SP0.world"/>
     <arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/$(arg vehicle)/$(arg vehicle).sdf"/>
     <env name="PX4_SIM_MODEL" value="$(arg vehicle)" />
     <env name="PX4_ESTIMATOR" value="$(arg est)" />
@@ -42,4 +49,5 @@
     </include>
     <!-- gazebo model -->
     <node name="$(anon vehicle_spawn)" pkg="gazebo_ros" type="spawn_model" output="screen" args="-sdf -file $(arg sdf) -model $(arg vehicle) -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg R) -P $(arg P) -Y $(arg Y)"/>
+    <node pkg="tf" type="static_transform_publisher" name="stereo_cam" args="0.01 0.025 -0.035 0 1.5708 0 base_link stereo_cam 10"/>
 </launch>
